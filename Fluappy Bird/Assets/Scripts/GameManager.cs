@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-[DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -62,10 +62,14 @@ public class GameManager : MonoBehaviour
         player.enabled = false;
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Lvl");
+    }
+
     public void IncreaseScore()
     {
         score++;
         scoreText.text = score.ToString();
     }
-
 }

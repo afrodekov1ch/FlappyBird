@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class PanelController : MonoBehaviour
 {
-    public GameObject panel; // Ссылка на панель, которую вы хотите отобразить/скрыть
-    private bool isPanelActive; // Флаг, показывающий, активна ли панель в данный момент
-    public Button enableButton; // Кнопка для включения панели
-    public Button disableButton; // Кнопка для выключения панели
+    public GameObject panel; // ссылка на панель, которую вы хотите отобразить/скрыть
+    private bool isPanelActive; // флаг, показывающий, активна ли панель в данный момент
+    public Button enableButton; // кнопка для включения панели
+    public Button disableButton; // кнопка для выключения панели
 
     void Start()
     {
