@@ -43,6 +43,11 @@ public class Player : MonoBehaviour
         Vector3 rotation = transform.eulerAngles;
         rotation.z = direction.y * tilt;
         transform.eulerAngles = rotation;
+
+        if(transform.position.y >= 6f)
+        {
+            GameManager.Instance.GameOver();
+        }
     }
 
     private void AnimateSprite()
@@ -60,9 +65,16 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Obstacle")) {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
             GameManager.Instance.GameOver();
-        } else if (other.gameObject.CompareTag("Scoring")) {
+        }
+        else if (other.gameObject.CompareTag("Ground"))
+        {
+            GameManager.Instance.GameOver();
+        }
+        else if (other.gameObject.CompareTag("Scoring"))
+        {
             GameManager.Instance.IncreaseScore();
         }
     }
