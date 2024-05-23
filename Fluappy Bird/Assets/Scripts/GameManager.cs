@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private Spawner spawner;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text coinText;
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject gameOver;
 
     private int score;
+    private int coins;
     public int Score => score;
+    public int Coins => coins;
 
     private void Awake()
     {
@@ -26,7 +29,21 @@ public class GameManager : MonoBehaviour
             Instance = this;
             Application.targetFrameRate = 60;
             DontDestroyOnLoad(gameObject);
+            LoadCoins();
             Pause();
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveCoins();
+    }
+
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            SaveCoins();
         }
     }
 
@@ -34,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         scoreText.text = score.ToString();
+        coinText.text = coins.ToString();
 
         playButton.SetActive(false);
         gameOver.SetActive(false);
@@ -71,5 +89,23 @@ public class GameManager : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString();
+
+        if (score % 10 == 0)
+        {
+            coins++;
+            coinText.text = coins.ToString();
+            SaveCoins(); // Сохранение монет при их изменении
+        }
+    }
+
+    private void SaveCoins()
+    {
+        PlayerPrefs.SetInt("Coins", coins);
+    }
+
+    private void LoadCoins()
+    {
+        coins = PlayerPrefs.GetInt("Coins", 0);
+        coinText.text = coins.ToString();
     }
 }
