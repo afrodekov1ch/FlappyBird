@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text coinText;
     [SerializeField] private GameObject playButton;
     [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject shopButton;
+    [SerializeField] private GameObject settingsButton;
 
     private int score;
     private int coins;
@@ -55,6 +57,8 @@ public class GameManager : MonoBehaviour
 
         playButton.SetActive(false);
         gameOver.SetActive(false);
+        shopButton.SetActive(false);
+        settingsButton.SetActive(false);
 
         Time.timeScale = 1f;
         player.enabled = true;
@@ -70,6 +74,8 @@ public class GameManager : MonoBehaviour
     {
         playButton.SetActive(true);
         gameOver.SetActive(true);
+        shopButton.SetActive(true);
+        settingsButton.SetActive(true);
 
         Pause();
     }
