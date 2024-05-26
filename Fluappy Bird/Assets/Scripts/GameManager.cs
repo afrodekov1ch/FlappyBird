@@ -64,8 +64,8 @@ public class GameManager : MonoBehaviour
         player.enabled = true;
 
         Pipes[] pipes = FindObjectsOfType<Pipes>();
-
-        for (int i = 0; i < pipes.Length; i++) {
+        for (int i = 0; i < pipes.Length; i++)
+        {
             Destroy(pipes[i].gameObject);
         }
     }
@@ -102,6 +102,13 @@ public class GameManager : MonoBehaviour
             coinText.text = coins.ToString();
             SaveCoins(); // Сохранение монет при их изменении
         }
+    }
+
+    public void DeductCoins(int amount)
+    {
+        coins -= amount;
+        coinText.text = coins.ToString();
+        SaveCoins();
     }
 
     private void SaveCoins()
